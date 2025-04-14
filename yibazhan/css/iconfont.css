@@ -1,0 +1,87 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4138289 */
+  src: url('../../yibazhan/font/iconfont.woff2?t=1692179160664') format('woff2'),
+       url('../../yibazhan/font/iconfont.woff?t=1692179160664') format('woff'),
+       url('../../yibazhan/font/iconfont.ttf?t=1692179160664') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-goTop:before {
+  content: "\e76c";
+}
+
+.icon-kexueyanjiu:before {
+  content: "\e636";
+}
+
+.icon-jiaoyujiaoxue:before {
+  content: "\e635";
+}
+
+.icon-study_icon:before {
+  content: "\e632";
+}
+
+.icon-online_icon:before {
+  content: "\e631";
+}
+
+.icon-sousuo:before {
+  content: "\e693";
+}
+
+.icon-bilibili:before {
+  content: "\e602";
+}
+
+.icon-douyin1:before {
+  content: "\e62f";
+}
+
+.icon-a-gong1:before {
+  content: "\e642";
+}
+
+.icon-a-gong2:before {
+  content: "\eaf2";
+}
+
+.icon-wechat2:before {
+  content: "\e600";
+}
+
+.icon-search:before {
+  content: "\e601";
+}
+
+.icon-quick:before {
+  content: "\e612";
+}
+
+.icon-wechat:before {
+  content: "\e65b";
+}
+
+.icon-notice:before {
+  content: "\e647";
+}
+
+.icon-menu2:before {
+  content: "\e62c";
+}
+
+.icon-menu:before {
+  content: "\eaf1";
+}
+
+.icon-douyin:before {
+  content: "\e8db";
+}
+

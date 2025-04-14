@@ -1,0 +1,137 @@
+body{
+    -webkit-text-size-adjust: 100% !important;
+}
+.straight .title-item{
+    width: 150px;
+    padding-bottom: 4px;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #636363;
+    border-bottom: 3px solid #0b6042;
+}
+.straight .title-item .title{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+.straight .title-item img{
+    width: 30px;
+}
+.straight .content{
+    padding: 15px;
+}
+.straight .first{
+    display: flex;
+    justify-content: space-between;
+}
+.straight .a{
+    width: calc(50% - 5px);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: bold;
+    color: #0b6042;
+    background: url(yibazhan/images/mailbox1.2799becf.png) no-repeat center;
+    background-size: 100% 100%;
+    margin-bottom: 10px;
+}
+.straight .content_box{
+    background: #def1eb;
+    height: 60px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    color: #0b6042;
+    font-size: 17px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.straight .main-container{
+    padding: 10px;
+    display: flex;
+    align-items: flex-start;
+}
+.straight .users-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px;
+}
+.straight .user-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 10px;
+    flex-basis: calc(60% - 40px);
+    box-sizing: border-box;
+    text-align: center;
+}
+.straight .avatar{
+    width: 80px;
+    height: 100px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.straight .consultant-label{
+    writing-mode: vertical-rl;
+    font-size: 1.2em;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    color: #333;
+    padding: 10px;
+    margin-top: 20px;
+    position: relative;
+    margin-left: 50px;
+}
+.straight .consultant-label::after {
+    content: "";
+    position: absolute;
+    left: 100%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #2a4588;
+}
+.straight .news-list-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0 20px 20px 20px;
+}
+.straight .news-list{
+    display: inline-block;
+    align-items: center;
+    color: #636363;
+    cursor: pointer;
+    padding: 5px 0;
+}
+.straight .news-item{
+    display: inline-flex;
+    align-items: center;
+}
+.straight .news-title{
+    display: block;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    font-size: 14px;
+}
+.straight .separator{
+    display: block;
+    margin: 0 10px;
+    color: #ccc;
+    font-weight: bold;
+}
+.straight .b{
+    background: #FFF;
+}
+/* .straigh .content .first{
+    display: flex;
+} */
