@@ -28,7 +28,7 @@ $(function() {
                         </div>
                 </li>`
         })
-        $('#nav').append(str);
+        $('#nav').append(str2);
         $('#nav2').append(str2);
         resizefs()
         Nav('#nav') //导航
