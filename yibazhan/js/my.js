@@ -4,33 +4,34 @@ $(function() {
     //标题
     $.get(baseUrl+'/api/sysCategory/getNavigationTree',(res)=>{
         let {data}=res;
-        let str="";
+        let str1="";
         let str2="";
         data.forEach(item=>{
-            str+=`
-                <li><a href="https://www.nudt.edu.cn/xxgk/index.htm">学校概况</a><i class="toggle"></i>
+            let s1=``;
+            let s2=``;
+            item.child?.forEach(val=>{
+                s1+=`<li><a href="#">${val.name}</a></li>`;
+                s2+=`<dd><li><a href="#">${val.name}</a></li></dd>`;
+            })
+            str1+=`
+                <li>
+                    <a href="#">${item.name}</a><i class="toggle"></i>
                     <ul>
-                        <li><a href="https://www.nudt.edu.cn/xxgk/kdjj/index.htm">科大简介</a></li>
-                        <li><a href="https://www.nudt.edu.cn/xxgk/kdxx/index.htm">科大校训</a></li>
-                        <li><a href="https://www.nudt.edu.cn/xxgk/kdxg/index.htm">科大校歌</a></li>
-                        <li><a href="https://www.nudt.edu.cn/xxgk/sjxxsbxt/index.htm">标识系统</a></li>
+                        ${s1}
                     </ul>
-                </li>`;
-            str2+=`<li>
-                        <a href="https://www.nudt.edu.cn/xxgk/index.htm" class="">${item.name}</a>
-                        <div class="subnav flex w3">
-                            <div class="img"><div class="gp-img-responsive"><img src="yibazhan/images/nav_img_xxgk.png" alt=""></div></div>
-                            <dl class="flex">
-                                <dd><a href="https://www.nudt.edu.cn/xxgk/kdjj/index.htm">科大简介</a></dd>
-                                <dd><a href="https://www.nudt.edu.cn/xxgk/kdxx/index.htm">科大校训</a></dd>
-                                <dd><a href="https://www.nudt.edu.cn/xxgk/kdxg/index.htm">科大校歌</a></dd>
-                                <dd><a href="https://www.nudt.edu.cn/xxgk/sjxxsbxt/index.htm">标识系统</a></dd>
-                            </dl>
-                        </div>
+                </li>`
+            str2+=`
+                <li>
+                    <a href="#" class="">${item.name}</a>
+                    <div class="subnav flex w3">
+                        <dl class="flex">
+                            ${s2}
+                        </dl>
+                    </div>
                 </li>`
         })
-        // $('#nav').append(str2);
-        // $('#nav2').append(str);
+        $('#nav').append(str1);
+        $('#nav2').append(str2);
         resizefs()
         Nav('#nav') //导航
         Nav2('#nav2')
@@ -38,6 +39,13 @@ $(function() {
         SerMax('#searchBtn5', '#gp-search5');
         wechat()
         HeaderFix()
+    })
+
+    
+
+    //新闻动态
+    $.get(baseUrl+'/api/article/page?page=1&size=50&cid=141',(res)=>{
+        console.log(222222222222,res)
     })
 
     //新闻动态
@@ -112,7 +120,7 @@ $(function() {
         newsPages.forEach(item=>{
             str+=`
                 <div class="til_tab">
-                    <a href="https://www.nudt.edu.cn/jyjx/jxdt/c5d86fb9783f40c5bc52b4e1ea24c734.htm">
+                    <a href="#">
                         <div class="title gp-f20 gp-ellipsis">${item.title}</div>
                         <div class="summary gp-f18 gp-ellipsis-2">${item.content}</div>
                     </a>
@@ -250,175 +258,153 @@ $(function() {
                 </a>
             </li>`
         })
-        // data.records.forEach(item=>{
-        //     str+=`
-        //         <li class="swiper-slide">
-        //             <a href="https://www.nudt.edu.cn/rwfc/82e3c0c2b769478fb6ddf66888882310.htm" class="news_item">
-        //                 <div class="infoBox">
-        //                     <div class="name gp-f24">唐小妹</div>
-        //                     <div class="subtitle gp-f20">国防科大研究员唐小妹被授予全国三八红旗手称号</div>
-        //                     <div class="summary gp-f16 gp-ellipsis-2">
-        //                         为表彰先进、树立榜样，激励广大妇女自尊自信、自立自强，奋进新征程、建功新时代，积极投身中国式现代化建设，全国妇联决定，授予王志勤等10人全国三八红旗手标兵称号，授予张晓欢等596人全国三八红旗手称号，授予首都医科大学附属北京妇产医院北京妇幼保健院等395个单位全国三八红旗集体称号，授予北京市城建园林金都公司绿化三大队天安门广场特养班组等599个单位全国巾帼文明岗称号。其中，国防科技大学电子科学学院研究员唐小妹被授予全国三八红旗手称号。
-        //                     </div>
-        //                 </div>
-        //                 <div class="img"><img src="yibazhan/images/c265e435f9ea456495bb75bc4cf10ca4.jpg" alt=""></div>
-        //             </a>
-        //         </li>`;
-        // })
         $('#renwufengcai').append(str);
         var bg = document.querySelector('.item-bg');
-var items = document.querySelectorAll('.news_item');
-var item = document.querySelector('.news_item');
-var mode05Left = document.getElementsByClassName('mode05_slides')[0].getBoundingClientRect().left;
+        var mode05Left = document.getElementsByClassName('mode05_slides')[0].getBoundingClientRect().left;
+        $(function () {
+            var aHeight = [];
+            $('.news_item .infoBox').each(function (index, element) {
+                aHeight.push($(this).innerHeight())
+            });
+            // $('.news_item .infoBox').css('height',Math.max(...aHeight));
+            $('.news_item .infoBox').css('height',Math.max.apply(null, aHeight));
+        })
 
-function cLog(content) {
-    console.log(content)
-}
-$(function () {
-    var aHeight = [];
-    $('.news_item .infoBox').each(function (index, element) {
-        aHeight.push($(this).innerHeight())
-    });
-    // $('.news_item .infoBox').css('height',Math.max(...aHeight));
-    $('.news_item .infoBox').css('height',Math.max.apply(null, aHeight));
-})
+        if($(window).width() > 800) {
+            $('.wrap_mode05').on("mouseover", ".news_item", function (_event, _element) {
+                var x = $(this).offset().left - mode05Left;
+                var y = $(this).offset().top;
+                var width = $(this).outerWidth();
+                var height = $(this).outerHeight();
 
-if($(window).width() > 800) {
-    $('.wrap_mode05').on("mouseover", ".news_item", function (_event, _element) {
-        var x = $(this).offset().left - mode05Left;
-        var y = $(this).offset().top;
-        var width = $(this).outerWidth();
-        var height = $(this).outerHeight();
+                $('.item-bg').addClass('active');
+                $('.news_item').removeClass('active');
+                $(this).addClass('active');
+                // $('.news_item').removeClass('active');
 
-        $('.item-bg').addClass('active');
-        $('.news_item').removeClass('active');
-        $(this).addClass('active');
-        // $('.news_item').removeClass('active');
+                bg.style.width = width + 'px';
+                bg.style.height = height + 'px';
+                bg.style.transform = 'translateX(' + x + 'px )';
+            });
+            $('.wrap_mode05').on("mouseleave", ".news_item", function (_event, _element) {
+                $('.item-bg').removeClass('active');
+                $('.news_item').removeClass('active');
+            })
 
-        bg.style.width = width + 'px';
-        bg.style.height = height + 'px';
-        bg.style.transform = 'translateX(' + x + 'px )';
-    });
-    $('.wrap_mode05').on("mouseleave", ".news_item", function (_event, _element) {
-        $('.item-bg').removeClass('active');
-        $('.news_item').removeClass('active');
-    })
+            $(window).resize(function () {
+                if( $('.news_item.active').length > 0 ) {
+                    mode05Left = document.getElementsByClassName('mode05_slides')[0].getBoundingClientRect().left;
+                    var _this = $('.news_item.active');
+                    var x = $(_this).offset().left - mode05Left;
+                    var y = $(_this).offset().top;
+                    var width = $(_this).outerWidth();
+                    var height = $(_this).outerHeight();
 
-    $(window).resize(function () {
-        if( $('.news_item.active').length > 0 ) {
-            mode05Left = document.getElementsByClassName('mode05_slides')[0].getBoundingClientRect().left;
-            var _this = $('.news_item.active');
-            var x = $(_this).offset().left - mode05Left;
-            var y = $(_this).offset().top;
-            var width = $(_this).outerWidth();
-            var height = $(_this).outerHeight();
-
-            bg.style.transform = 'translateX(' + x + 'px )';
-            bg.style.width = width + 'px';
-            bg.style.height = height + 'px';
+                    bg.style.transform = 'translateX(' + x + 'px )';
+                    bg.style.width = width + 'px';
+                    bg.style.height = height + 'px';
+                }
+            });
+            $('.body_b').scroll(function () {
+                if( $('.news_item.active').length > 0 ){
+                    mode05Left = document.getElementsByClassName('mode05_slides')[0].getBoundingClientRect().left;
+                    var _this = $('.news_item.active');
+                    var x = $(_this).offset().left - mode05Left;
+                    var y = $(_this).offset().top;
+                    var width = $(_this).outerWidth();
+                    var height = $(_this).outerHeight();
+            
+                    bg.style.transform = 'translateX(' + x + 'px )';
+                    bg.style.width = width + 'px';
+                    bg.style.height = height + 'px';
+                }
+            });
         }
-    });
-    $('.body_b').scroll(function () {
-        if( $('.news_item.active').length > 0 ){
-            mode05Left = document.getElementsByClassName('mode05_slides')[0].getBoundingClientRect().left;
-            var _this = $('.news_item.active');
-            var x = $(_this).offset().left - mode05Left;
-            var y = $(_this).offset().top;
-            var width = $(_this).outerWidth();
-            var height = $(_this).outerHeight();
-    
-            bg.style.transform = 'translateX(' + x + 'px )';
-            bg.style.width = width + 'px';
-            bg.style.height = height + 'px';
-        }
-    });
-}
 
-var mode05_slides = new Swiper('.mode05_slides', {
-    effect: 'coverflow',
-    grabCursor: true,
-    loop: true,
-    centeredSlides: true,
-    keyboard: true,
-    slidesPerView: 3,
-    spaceBetween: 45,
-    speed: 300,
-    // autoplay: {
-    //     delay: 3000,
-    //     disableOnInteraction: false
-    // },
-    coverflowEffect: {
-        rotate: 0,
-        stretch: 0,
-        depth: 0,
-        modifier: 3,
-        slideShadows: false
-    },
-    breakpoints: {
-        998: {
-            spaceBetween: 45,
+        var mode05_slides = new Swiper('.mode05_slides', {
+            effect: 'coverflow',
+            grabCursor: true,
+            loop: true,
+            centeredSlides: true,
+            keyboard: true,
             slidesPerView: 3,
-            centeredSlides: true
-        },
-        320: {
             spaceBetween: 45,
-            slidesPerView: 1,
-            centeredSlides: true
-        }
-    },
-    simulateTouch: true,
-    navigation: {
-        nextEl: '.news-slider-next',
-        prevEl: '.news-slider-prev'
-    },
-    pagination: {
-        el: '.news-slider__pagination',
-        clickable: true,
-        type : 'progressbar',
-    },
-    on: {
-        init: function () {
-            var activeItem = document.getElementsByClassName('mode05_slides')[0].querySelector('.swiper-slide-active');
+            speed: 300,
+            // autoplay: {
+            //     delay: 3000,
+            //     disableOnInteraction: false
+            // },
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 0,
+                modifier: 3,
+                slideShadows: false
+            },
+            breakpoints: {
+                998: {
+                    spaceBetween: 45,
+                    slidesPerView: 3,
+                    centeredSlides: true
+                },
+                320: {
+                    spaceBetween: 45,
+                    slidesPerView: 1,
+                    centeredSlides: true
+                }
+            },
+            simulateTouch: true,
+            navigation: {
+                nextEl: '.news-slider-next',
+                prevEl: '.news-slider-prev'
+            },
+            pagination: {
+                el: '.news-slider__pagination',
+                clickable: true,
+                type : 'progressbar',
+            },
+            on: {
+                init: function () {
+                    var activeItem = document.getElementsByClassName('mode05_slides')[0].querySelector('.swiper-slide-active');
+                    var sliderItem = activeItem.querySelector('.news_item');
+                    $('.swiper-slide-active .news_item').addClass('active');
+                    var x = sliderItem.getBoundingClientRect().left - mode05Left;
+                    var y = sliderItem.getBoundingClientRect().top;
+                    var width = sliderItem.getBoundingClientRect().width;
+                    var height = sliderItem.getBoundingClientRect().height;
+                    $('.item-bg').addClass('active');
+                    bg.style.width = width + 'px';
+                    bg.style.height = height + 'px';
+                    bg.style.transform = 'translateX(' + x + 'px )';
+                    // bg.style.transform = 'translateX(' + x + 'px ) translateY(' + y + 'px)';
+                }
+            }
+        });
+
+        mode05_slides.on('touchEnd', function () {
+            $('.news_item').removeClass('active');
+            $('.swiper-slide-active .news_item').addClass('active');
+        });
+
+        mode05_slides.on('slideChange', function () {
+            $('.news_item').removeClass('active');
+        });
+
+        mode05_slides.on('slideChangeTransitionEnd', function () {
+            $('.news_item').removeClass('active');
+            var activeItem = document.querySelector('.swiper-slide-active');
             var sliderItem = activeItem.querySelector('.news_item');
             $('.swiper-slide-active .news_item').addClass('active');
-            var x = sliderItem.getBoundingClientRect().left - mode05Left;
-            var y = sliderItem.getBoundingClientRect().top;
-            var width = sliderItem.getBoundingClientRect().width;
-            var height = sliderItem.getBoundingClientRect().height;
+            var x = document.querySelector('.swiper-slide-active .news_item').getBoundingClientRect().left - mode05Left;
+            var y = document.querySelector('.swiper-slide-active .news_item').getBoundingClientRect().top;
+            /* var width = sliderItem.getBoundingClientRect().width;
+            var height = sliderItem.getBoundingClientRect().height; */
             $('.item-bg').addClass('active');
-            bg.style.width = width + 'px';
-            bg.style.height = height + 'px';
+            /* bg.style.width = width + 'px';
+            bg.style.height = height + 'px'; */
             bg.style.transform = 'translateX(' + x + 'px )';
             // bg.style.transform = 'translateX(' + x + 'px ) translateY(' + y + 'px)';
-        }
-    }
-});
-
-mode05_slides.on('touchEnd', function () {
-    $('.news_item').removeClass('active');
-    $('.swiper-slide-active .news_item').addClass('active');
-});
-
-mode05_slides.on('slideChange', function () {
-    $('.news_item').removeClass('active');
-});
-
-mode05_slides.on('slideChangeTransitionEnd', function () {
-    $('.news_item').removeClass('active');
-    var activeItem = document.querySelector('.swiper-slide-active');
-    var sliderItem = activeItem.querySelector('.news_item');
-    $('.swiper-slide-active .news_item').addClass('active');
-    var x = document.querySelector('.swiper-slide-active .news_item').getBoundingClientRect().left - mode05Left;
-    var y = document.querySelector('.swiper-slide-active .news_item').getBoundingClientRect().top;
-    /* var width = sliderItem.getBoundingClientRect().width;
-    var height = sliderItem.getBoundingClientRect().height; */
-    $('.item-bg').addClass('active');
-    /* bg.style.width = width + 'px';
-    bg.style.height = height + 'px'; */
-    bg.style.transform = 'translateX(' + x + 'px )';
-    // bg.style.transform = 'translateX(' + x + 'px ) translateY(' + y + 'px)';
-});
-
+        });
     })
 
     //祁连艺苑

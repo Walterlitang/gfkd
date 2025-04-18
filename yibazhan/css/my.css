@@ -25,7 +25,7 @@ body{
     display: flex;
     justify-content: space-between;
 }
-.straight .a{
+.straight .shouzhang{
     width: calc(50% - 5px);
     height: 60px;
     display: flex;
@@ -34,9 +34,27 @@ body{
     font-size: 17px;
     font-weight: bold;
     color: #0b6042;
-    background: url(yibazhan/images/mailbox1.2799becf.png) no-repeat center;
+    background: url(../images/mailbox1.png) no-repeat center;
     background-size: 100% 100%;
     margin-bottom: 10px;
+}
+.straight .hall{
+    /* width: calc(50% - 5px); */
+    padding:0px 20px;
+    height: 95px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: bold;
+    color: #0b6042;
+    background: #def1eb;
+    background-size: 100% 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.straight .jijian{
+    background: url(../images/mailbox2.png) no-repeat center;
 }
 .straight .content_box{
     background: #def1eb;
@@ -131,6 +149,16 @@ body{
 }
 .straight .b{
     background: #FFF;
+}
+/* .straight .b .title image{
+    background: red;
+    width: 30px!important;
+    height: 30px!important;
+} */
+.straight .b .title-img{
+    width: 30px;
+    height: 30px;
+    /* margin-right: 8px;  */
 }
 /* .straigh .content .first{
     display: flex;
