@@ -351,20 +351,16 @@ $(function() {
         HeaderFix()
     })
 
-    var swiper = new Swiper('.swiper-container', {
+    var swiper = new Swiper('#lunbo', {
         loop: true, // 循环模式
-        // pagination: {
-        //   el: '.swiper-pagination', // 分页器
-        //   clickable: true, // 允许点击分页器切换
-        // },
+        pagination: {
+          el: '.swiper-pagination', // 分页器
+          clickable: true, // 允许点击分页器切换
+        },
         autoplay:{
             delay:1000,
             disableInteraction:false
-        },
-        navigation: {
-          nextEl: '.swiper-button-next', // 下一页按钮
-          prevEl: '.swiper-button-prev', // 上一页按钮
-        },
+        }
     });
 
     //大图
