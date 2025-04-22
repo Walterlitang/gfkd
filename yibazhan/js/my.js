@@ -7,49 +7,77 @@ $(function() {
         let str1="";
         let str2="";
         data.forEach(item=>{
-            let s1=``;
-            let s2=``;
-            item.child?.forEach(val=>{
-                s1+=`<li><a href="#">${val.name}</a></li>`;
-                s2+=`<dd><li><a href="#">${val.name}</a></li></dd>`;
-            })
-            if(s1===""){
-                str1+=`
-                    <li>
-                        <a href="#">${item.name}</a><i class="toggle"></i>
-                    </li>`
-            }else{
-                str1+=`
-                    <li>
-                        <a href="#">${item.name}</a><i class="toggle"></i>
-                        <ul>
-                            ${s1}
-                        </ul>
-                    </li>`
-            }
+            // let s1=``;
+            // let s2=``;
+            // item.child?.forEach(val=>{
+            //     s1+=`<li><a href="#">${val.name}</a></li>`;
+            //     s2+=`<dd><li><a href="#">${val.name}</a></li></dd>`;
+            // })
+            str1+=`
+                <li>
+                    <a href="#${item.name}">${item.name}</a><i class="toggle"></i>
+                </li>`
+            // if(s1===""){
+            //     str1+=`
+            //         <li>
+            //             <a href="#">${item.name}</a><i class="toggle"></i>
+            //         </li>`
+            // }else{
+            //     str1+=`
+            //         <li>
+            //             <a href="#">${item.name}</a><i class="toggle"></i>
+            //             <ul>
+            //                 ${s1}
+            //             </ul>
+            //         </li>`
+            // }
+            str2+=`
+                <li>
+                    <a href="#${item.name}" class="">${item.name}</a>
+                </li>`
             
-            if(s2===""){
-                str2+=`
-                    <li>
-                        <a href="#" class="">${item.name}</a>
-                    </li>`
-            }else{
-                str2+=`
-                    <li>
-                        <a href="#" class="">${item.name}</a>
-                        <div class="subnav flex w3">
-                            <dl class="flex">
-                                ${s2}
-                            </dl>
-                        </div>
-                    </li>`
-            }
+            // if(s2===""){
+            //     str2+=`
+            //         <li>
+            //             <a href="#" class="">${item.name}</a>
+            //         </li>`
+            // }else{
+            //     str2+=`
+            //         <li>
+            //             <a href="#" class="">${item.name}</a>
+            //             <div class="subnav flex w3">
+            //                 <dl class="flex">
+            //                     ${s2}
+            //                 </dl>
+            //             </div>
+            //         </li>`
+            // }
             //新闻动态
             if(item.name==="新闻动态"){
+                let s=`
+                    <div class="mode1 gp-flex gp-container  gp-clearFix" id="${item.name}">
+                        <div class="col lf effect effect4">
+                            <div class="listTitle1">
+                                <h2 class="gp-f30"><a href="#">新闻动态<span class="enTitle gp-f16"><b class="gp-f30">N</b>ews</span></a></h2>
+                            </div>
+                            <div class="news_info1 gp-flex"></div>
+                            <ul class="NUDT-list1 gp-avg-2"></ul>
+                        </div>
+                        <div class="col rt effect effect2">
+                            <div class="listTitle1">
+                                <h2 class="gp-f30">
+                                    <a href="#"><span class="enTitle gp-f16"><b class="gp-f30">N</b>ews</span></a>
+                                </h2>
+                            </div>
+                            <ul class="NUDT_list2"></ul>
+                        </div>
+                    </div>`;
+                $(".wrap_mode1").append(s);
+
                 $.get(baseUrl+'/api/article/page?page=1&size=50&cid='+item.id,(res)=>{
                     let data=res.data.records;
                     let str1=`
-                        <div class="news_img1">
+                        <div class="news_img1" >
                             <a class="gp-img-responsive" href="./news.html?id=${data[0].id}">
                                 <img src="${baseUrlApi+data[0].pic}">
                             </a>
@@ -70,24 +98,24 @@ $(function() {
                     let str2=``;
                     data.slice(1,3).forEach(val=>{
                         str2+=`
-                        <li>
-                            <div class="item-info1">
-                                <div class="item-img1">
-                                    <a class="gp-img-responsive" href="./news.html?id=${val.id}">
-                                        <img src="${baseUrlApi+val.pic}">
-                                    </a>
+                            <li>
+                                <div class="item-info1">
+                                    <div class="item-img1">
+                                        <a class="gp-img-responsive" href="./news.html?id=${val.id}">
+                                            <img src="${baseUrlApi+val.pic}">
+                                        </a>
+                                    </div>
+                                    <div class="item-txt1">
+                                        <span class="item-date1 gp-f14"><span class="gp-f20">${val.createTime.slice(8)}</span>${val.createTime.slice(0,7)}</span>
+                                        <h3 class="item_title gp-f18">
+                                            <a href="#">${val.title}</a>
+                                        </h3>
+                                    </div>
                                 </div>
-                                <div class="item-txt1">
-                                    <span class="item-date1 gp-f14"><span class="gp-f20">${val.createTime.slice(8)}</span>${val.createTime.slice(0,7)}</span>
-                                    <h3 class="item_title gp-f18">
-                                        <a href="#">${val.title}</a>
-                                    </h3>
-                                </div>
-                            </div>
-                        </li>`;
+                            </li>`;
                     })
                     let str3=``;
-                    data.slice(0,5).forEach(val=>{
+                    data.slice(3,8).forEach(val=>{
                         str3+=`
                         <li>
                             <a href="./news.html?id=${val.id}">
@@ -108,6 +136,21 @@ $(function() {
             }
             //强军资讯
             if(item.name==="强军资讯"){
+                let s=`
+                    <div class="mode02_title fs40 effect effect3" id="${item.name}">
+                        <h2 class="gp-f30"><a href="#">强军资讯<span class="enTitle gp-f16"><b class="gp-f30">I</b>nformation</span></a></h2>
+                    </div>
+                    <div class="mode02 tab">
+                        <img src="yibazhan/images/mode02_gradient.png" alt="" class="cover">
+                        <video class="q_lazyload" data-src="./yibazhan/images/video2.mp4" muted loop autoplay></video>
+                        <div class="gp-container effect effect1">
+                            <div class="modeCon flex">	
+                                <div class="box_list"></div>
+                                <div class="til_list" style="top: 40px;"></div>
+                            </div>
+                        </div>
+                    </div>`
+                $(".wrap_mode02").append(s);
                 $.get(baseUrl+'/api/article/page?page=1&size=50&cid='+item.id,(res)=>{
                     const data=res.data.records.slice(0,5);
                     let str=``;
@@ -115,7 +158,7 @@ $(function() {
                     data.forEach(item=>{
                         str+=`
                             <div class="til_tab">
-                                <a href="#">
+                                <a href="./news.html?id=${item.id}">
                                     <div class="title gp-f20 gp-ellipsis">${item.title}</div>
                                     <div class="summary gp-f18 gp-ellipsis-2">${item.content}</div>
                                 </a>
@@ -133,6 +176,21 @@ $(function() {
             }
             //祁连讲习所
             if(item.name==="祁连讲习所"){
+                let s=`
+                    <div class="mode03_title fs40 effect effect1" id="${item.name}">
+                        <h2 class="gp-f30"><a href="#">祁连讲习所<span class="enTitle gp-f16"><b class="gp-f30">L</b>ecture</span></a></h2>
+                    </div>
+                    <div class="mode03 tab">
+                        <img src="yibazhan/images/mode03_gradient.png" alt="" class="cover">
+                        <video class="q_lazyload" data-src="./yibazhan/images/video2.mp4" muted loop autoplay></video>
+                        <div class="gp-container effect effect1">
+                            <div class="modeCon flex">
+                                <div class="box_list"></div>
+                                <div class="til_list" style="top: 40px;"></div>
+                            </div>
+                        </div>
+                    </div>`
+                $(".wrap_mode03").append(s);
                 $.get(baseUrl+'/api/article/page?page=1&size=50&cid='+item.id,(res)=>{
                     const data=res.data.records.slice(0,5);
                     let str=``;
@@ -158,11 +216,25 @@ $(function() {
             }
             //人物风采
             if(item.name==="人物风采"){
+                let s=`
+                    <div class="mode05 effect effect1">
+                        <div class="index_title5 mode04_title">
+                            <h2 class="gp-f30"><a href="#">人物风采<span class="enTitle gp-f16"><b class="gp-f30">N</b>UDT PEOPLE</span></a></h2>
+                        </div>
+                        <div class="mode05_slides ul-inline">
+                            <div class="item-bg"></div>
+                            <ul class="swiper-wrapper" id="renwufengcai"></ul>
+                            <div class="news-slider-next iconfont icon-a-gong2"></div>
+                            <div class="news-slider-prev iconfont icon-a-gong2"></div>
+                            <div class="news-slider__pagination"></div>
+                        </div>
+                    </div>`;
+                $(".wrap_mode05").append(s);
                 //人物风采
                 $.get(baseUrl+'/api/article/page?page=1&size=50&cid='+item.id,(res)=>{
                     const { data } = res;
                     let str=``;
-                    data.records.forEach(item=>{
+                    data.records.slice(5).forEach(item=>{
                         str+=`<li class="swiper-slide">
                             <a href="#" class="news_item">
                                 <div class="infoBox">
@@ -177,7 +249,6 @@ $(function() {
                     })
                     $('#renwufengcai').append(str);
                     mode05_swiper();
-                    
                 })
             }
             //祁连驿站
@@ -190,29 +261,81 @@ $(function() {
                 //     })
                 // })
                 //信箱
-                $.get(baseUrl+'/api/sysCategory/getWebMailboxTree',(res)=>{
-                    const data=res.data.slice(0,2);
-                    let s=``;
-                    data.forEach(item=>{
-                        s+=`<div class="content_box" style="background: url(${baseUrlApi+item.backgroundImage}) no-repeat center;">${item.name}</div>`
-                    })
-                    $(".xinxiang").append(s);
-                })
-                //办事大厅
-                $.get(baseUrl+'/api/friendshipLink/webList?type=2',(res)=>{
-                    const data=res.data;
-                    let str=``;
-                    data.forEach(item=>{
-                        str+=`<a class="hall" href=${item.linkAddress}>`
-                        str+=`<image style="display:inline-block;width:24px;height:24px" src="${baseUrlApi+item.icon}" alt="">
-                            <span>${item.name}</span>
-                        </a>`
-                    })
-                    $(".dating").append(str);
-                })
-                //天天读报
-                $.get(baseUrl+'/api/sysCategory/getArticleTree?pid=131',(res)=>{
-                    console.log(11111111,res)
+                // $.get(baseUrl+'/api/sysCategory/getWebMailboxTree',(res)=>{
+                //     const data=res.data.slice(0,2);
+                //     let s=``;
+                //     data.forEach(item=>{
+                //         s+=`<div class="content_box" style="background: url(${baseUrlApi+item.backgroundImage}) no-repeat center;">${item.name}</div>`
+                //     })
+                //     $(".xinxiang").append(s);
+                // })
+                // //办事大厅
+                // $.get(baseUrl+'/api/friendshipLink/webList?type=2',(res)=>{
+                //     const data=res.data;
+                //     let str=``;
+                //     data.forEach((item,index)=>{
+                //         str+=`<a class="hall" href="${item.linkAddress}">
+                //             <image style="disaply:inline-block;width:24px;height:24px" src="${baseUrlApi+item.icon}" alt="">
+                //             <span>${item.name}</span></a>`
+                //     })
+                //     $(".dating").append(str);
+                // })
+                // //天天读报
+                // $.get(baseUrl+'/api/sysCategory/getArticleTree?pid=131',(res)=>{
+                //     console.log(11111111,res)
+                // })
+            }
+            if(item.name==="祁连艺苑"){
+                let s=`
+                    <div class="mode06" style="height:100vh">
+                        <div class="mode06Con gp-container flex" style="height:100%">
+                            <div class="flex left" style="width: 100%;">
+                                <div class="lf col">
+                                    <div class="index_title6 mode05_title effect isView" style="position: absolute;top: 24px;left: 52px;width: 1000px;z-index: 99999;">
+                                        <h2 class="gp-f40"><a href="zjkd/index.htm">祁连艺苑<span class="enTitle gp-f20"><b class="gp-f40">A</b>RTS</span></a></h2>
+                                    </div>
+                                    <ul style="height: 100%;">
+                                        <li style="height: 100%;">
+                                            <div class="item c2" style="cursour:pointer;height: 100%;" id="yishu"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="md col">
+                                    <ul style="height: 100%;">
+                                        <li style="height: 100%;">
+                                            <div class="item c2" style="cursour:pointer;height: 100%;" id="huatan"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="md col">
+                                    <ul style="height: 100%;display: flex;flex-direction: column;justify-content: space-between;">
+                                        <li style="height:calc(50% - 10px);">
+                                            <div class="item c2" style="height: 100%;" id="yinyue"></div>
+                                        </li>
+                                        <li style="height:calc(50% - 10px);">
+                                            <div class="item c3" style="height: 100%;" id="yuedu"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+                $(".qilianyiyuan").append(s);
+                //祁连艺苑
+                $.get(baseUrl+'/api/friendshipLink/webArtList',(res)=>{
+                    const { data } = res;
+                    //祁连艺术
+                    let str1=`<a href="${item.linkAddress || '#'}" class="gp-img-responsive" style="background-image: url(${baseUrlApi+data.theaterList[0].icon});background-size: 100% 100%;background-position: center;padding-bottom: 0px;height: 100%;"></a>`;
+                    $('#yishu').append(str1);
+                    //祁连画坛
+                    let str2=`<a href="${item.linkAddress|| '#'}" class="gp-img-responsive" style=";background-image: url(${baseUrlApi+data.otherList[0].icon});background-size: 100% 100%;background-position: center;padding-bottom: 0px;height: 100%;"></a>`;
+                    $('#huatan').append(str2);
+                    //祁连音乐
+                    let str3=`<a href="${item.linkAddress|| '#'}" class="gp-img-responsive" style="background-image: url(${baseUrlApi+data.otherList[1].icon});background-position: center;background-size: cover;padding-bottom: 0px;height: 100%;"></a>`;
+                    $('#yinyue').append(str3);
+                    //祁连阅读
+                    let str4=`<a href="${item.linkAddress|| '#'}" class="gp-img-responsive" style="background-image: url(${baseUrlApi+data.otherList[2].icon});background-position: center;background-size: cover;padding-bottom: 0px;height: 100%;"></a>`;
+                    $('#yuedu').append(str4);
                 })
             }
 
@@ -233,10 +356,32 @@ $(function() {
         let s=`<img src="${baseUrlApi+res.data.records[0].imageUrl}" alt="">`;
         $(".slick-img").append(s);
     })
-    
-    $.get(baseUrl+'/api/sysCategory/getAdminArticleTree?keyword=',(res)=>{
+
+    //邮箱
+    $.get(baseUrl+'/api/sysCategory/getWebMailboxTree',(res)=>{
+        const data=res.data.slice(0,2);
+        let s=``;
+        data.forEach(item=>{
+            s+=`<div class="content_box" style="background: url(${baseUrlApi+item.backgroundImage}) no-repeat center;">${item.name}</div>`
+        })
+        $(".xinxiang").append(s);
+    })
+    //办事大厅
+    $.get(baseUrl+'/api/friendshipLink/webList?type=2',(res)=>{
+        const data=res.data;
+        let str=``;
+        data.forEach((item,index)=>{
+            str+=`<a class="hall" href="${item.linkAddress}">
+                <image style="disaply:inline-block;width:24px;height:24px" src="${baseUrlApi+item.icon}" alt="">
+                <span>${item.name}</span></a>`
+        })
+        $(".dating").append(str);
+    })
+    //天天读报
+    $.get(baseUrl+'/api/sysCategory/getArticleTree?pid=131',(res)=>{
         console.log(11111111,res)
     })
+    
 
     // //新闻动态
     // $.get(baseUrl+'/api/article/FocusAndCurrentPolitics?currentPoliticsLimit=8',(res)=>{
@@ -377,22 +522,7 @@ $(function() {
 
     
 
-    //祁连艺苑
-    $.get(baseUrl+'/api/friendshipLink/webArtList',(res)=>{
-        const { data } = res;
-        //祁连艺术
-        let str1=`<a href="#" class="gp-img-responsive" style="background-image: url(${baseUrlApi+data.theaterList[0].icon});background-size: 100% 100%;background-position: center;padding-bottom: 0px;height: 100%;"></a>`;
-        $('#yishu').append(str1);
-        //祁连画坛
-        let str2=`<a href="#" class="gp-img-responsive" style="background-image: url(${baseUrlApi+data.otherList[0].icon});background-size: 100% 100%;background-position: center;padding-bottom: 0px;height: 100%;"></a>`;
-        $('#huatan').append(str2);
-        //祁连音乐
-        let str3=`<a href="#" class="gp-img-responsive" style="background-image: url(${baseUrlApi+data.otherList[1].icon});background-position: center;background-size: cover;padding-bottom: 0px;height: 100%;"></a>`;
-        $('#yinyue').append(str3);
-        //祁连阅读
-        let str4=`<a href="#" class="gp-img-responsive" style="background-image: url(${baseUrlApi+data.otherList[2].icon});background-position: center;background-size: cover;padding-bottom: 0px;height: 100%;"></a>`;
-        $('#yuedu').append(str4);
-    })
+    
 });
 
 function mode05_swiper(){
