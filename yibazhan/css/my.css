@@ -103,8 +103,8 @@ body{
 }
 .straight .users-container{
     display: flex;
-    flex-wrap: wrap;
-    width: 90%;
+    flex-wrap: nowrap;
+    width: 70%;
     gap: 20px;
     padding: 10px;
 }
@@ -118,6 +118,10 @@ body{
     flex-basis: calc(60% - 40px);
     box-sizing: border-box;
     text-align: center;
+}
+.straight .user-info img{
+    width: 100px;
+    height: 120px;
 }
 .straight .avatar{
     width: 80px;
@@ -190,25 +194,19 @@ body{
     /* margin-right: 8px;  */
 }
 
-
-.swiper1 {
-    width: 100%;
-    height: 100%;
-}
-.swiper1 .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
+.swiper-container {
+    width: 80%;
+    height: 300px;
+  }
+  .swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.swiper1 .swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+    font-size: 24px;
+    color: #fff;
+    background-color: #333;
+    border-radius: 10px;
+  }
 /* .straigh .content .first{
     display: flex;
 } */

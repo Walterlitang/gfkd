@@ -78,12 +78,12 @@ $(function() {
                     let data=res.data.records;
                     let str1=`
                         <div class="news_img1" >
-                            <a class="gp-img-responsive" href="./news.html?id=${data[0].id}">
+                            <a class="gp-img-responsive" href="./news.html?id=${data[0].id}" target='_blank'>
                                 <img src="${baseUrlApi+data[0].pic}">
                             </a>
                         </div>
                         <div class="news_txt1 fontHei">
-                            <a href="./news.html?id=${data[0].id}">
+                            <a href="./news.html?id=${data[0].id}" target='_blank'>
                                 <div class="date gp-f14 item-date1"><span class="gp-f20">${data[0].createTime.slice(8)}</span>${data[0].createTime.slice(0,7)}</div>
                                 <h3 class="news_title gp-f20 gp-ellipsis">${data[0].title}</h3>
                                 <div class="news_summary gp-f18 gp-ellipsis-2">${data[0].content}</div>
@@ -101,7 +101,7 @@ $(function() {
                             <li>
                                 <div class="item-info1">
                                     <div class="item-img1">
-                                        <a class="gp-img-responsive" href="./news.html?id=${val.id}">
+                                        <a class="gp-img-responsive" href="./news.html?id=${val.id}" target='_blank'>
                                             <img src="${baseUrlApi+val.pic}">
                                         </a>
                                     </div>
@@ -118,7 +118,7 @@ $(function() {
                     data.slice(3,8).forEach(val=>{
                         str3+=`
                         <li>
-                            <a href="./news.html?id=${val.id}">
+                            <a href="./news.html?id=${val.id}" target='_blank'>
                                 <div class="notice_date">
                                     <span class="day gp-f20">${val.createTime.slice(8)}</span>
                                     <span class="year gp-f14">${val.createTime.replace("-","/").slice(0,7)}</span>
@@ -158,7 +158,7 @@ $(function() {
                     data.forEach(item=>{
                         str+=`
                             <div class="til_tab">
-                                <a href="./news.html?id=${item.id}">
+                                <a href="./news.html?id=${item.id}" target='_blank'>
                                     <div class="title gp-f20 gp-ellipsis">${item.title}</div>
                                     <div class="summary gp-f18 gp-ellipsis-2">${item.content}</div>
                                 </a>
@@ -198,7 +198,7 @@ $(function() {
                     data.forEach(item=>{
                         str+=`
                             <div class="til_tab">
-                                <a href="#">
+                                <a href="./news.html?id=${item.id}" target='_blank'>
                                     <div class="title gp-f20 gp-ellipsis">${item.title}</div>
                                     <div class="summary gp-f18 gp-ellipsis-2">${item.content}</div>
                                 </a>
@@ -217,7 +217,7 @@ $(function() {
             //人物风采
             if(item.name==="人物风采"){
                 let s=`
-                    <div class="mode05 effect effect1">
+                    <div class="mode05 effect effect1" id="${item.name}">
                         <div class="index_title5 mode04_title">
                             <h2 class="gp-f30"><a href="#">人物风采<span class="enTitle gp-f16"><b class="gp-f30">N</b>UDT PEOPLE</span></a></h2>
                         </div>
@@ -287,7 +287,7 @@ $(function() {
             }
             if(item.name==="祁连艺苑"){
                 let s=`
-                    <div class="mode06" style="height:100vh">
+                    <div class="mode06" style="height:100vh" id="${item.name}">
                         <div class="mode06Con gp-container flex" style="height:100%">
                             <div class="flex left" style="width: 100%;">
                                 <div class="lf col">
@@ -351,6 +351,22 @@ $(function() {
         HeaderFix()
     })
 
+    var swiper = new Swiper('.swiper-container', {
+        loop: true, // 循环模式
+        // pagination: {
+        //   el: '.swiper-pagination', // 分页器
+        //   clickable: true, // 允许点击分页器切换
+        // },
+        autoplay:{
+            delay:1000,
+            disableInteraction:false
+        },
+        navigation: {
+          nextEl: '.swiper-button-next', // 下一页按钮
+          prevEl: '.swiper-button-prev', // 上一页按钮
+        },
+    });
+
     //大图
     $.get(baseUrl+'/api/banner/webPage',(res)=>{
         let s=`<img src="${baseUrlApi+res.data.records[0].imageUrl}" alt="">`;
@@ -380,8 +396,20 @@ $(function() {
     //天天读报
     $.get(baseUrl+'/api/sysCategory/getArticleTree?pid=131',(res)=>{
         console.log(11111111,res)
+        const data=res.data;
+        let s=``;
+        data.forEach(item=>{
+            s+=`<div class="bao">
+                <a>${item.name}</a>
+            </div>`
+        })
+        $(".dubao").append(s);
     })
     
+    //网站设置
+    $.get(baseUrl+'/api/websiteConfig/detail',(res)=>{
+
+    })
 
     // //新闻动态
     // $.get(baseUrl+'/api/article/FocusAndCurrentPolitics?currentPoliticsLimit=8',(res)=>{
