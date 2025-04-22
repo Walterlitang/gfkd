@@ -290,9 +290,9 @@ $(function() {
                     <div class="mode06" style="height:100vh" id="${item.name}">
                         <div class="mode06Con gp-container flex" style="height:100%">
                             <div class="flex left" style="width: 100%;">
-                                <div class="lf col">
-                                    <div class="index_title6 mode05_title effect isView" style="position: absolute;top: 24px;left: 52px;width: 1000px;z-index: 99999;">
-                                        <h2 class="gp-f40"><a href="zjkd/index.htm">祁连艺苑<span class="enTitle gp-f20"><b class="gp-f40">A</b>RTS</span></a></h2>
+                                <div class="lf col" style="position:relative;"> 
+                                    <div class="index_title6 mode05_title effect isView" style="position: absolute;top: 24px;width: 400px;height:100px;z-index:99999;">
+                                        <h2 class="gp-f40"><a href="#">祁连艺苑<span class="enTitle gp-f20"><b class="gp-f40">A</b>RTS</span></a></h2>
                                     </div>
                                     <ul style="height: 100%;">
                                         <li style="height: 100%;">
@@ -301,6 +301,7 @@ $(function() {
                                     </ul>
                                 </div>
                                 <div class="md col">
+                                    
                                     <ul style="height: 100%;">
                                         <li style="height: 100%;">
                                             <div class="item c2" style="cursour:pointer;height: 100%;" id="huatan"></div>
@@ -325,16 +326,16 @@ $(function() {
                 $.get(baseUrl+'/api/friendshipLink/webArtList',(res)=>{
                     const { data } = res;
                     //祁连艺术
-                    let str1=`<a href="${item.linkAddress || '#'}" class="gp-img-responsive" style="background-image: url(${baseUrlApi+data.theaterList[0].icon});background-size: 100% 100%;background-position: center;padding-bottom: 0px;height: 100%;"></a>`;
+                    let str1=`<a target='_blank' href="${data.theaterList[0].linkAddress || '#'}" class="gp-img-responsive" style="background-image: url(${baseUrlApi+data.theaterList[0].icon});background-size: 100% 100%;background-position: center;padding-bottom: 0px;height: 100%;"></a>`;
                     $('#yishu').append(str1);
                     //祁连画坛
-                    let str2=`<a href="${item.linkAddress|| '#'}" class="gp-img-responsive" style=";background-image: url(${baseUrlApi+data.otherList[0].icon});background-size: 100% 100%;background-position: center;padding-bottom: 0px;height: 100%;"></a>`;
+                    let str2=`<a target='_blank' href="${data.otherList[0].linkAddress || '#'}" class="gp-img-responsive" style=";background-image: url(${baseUrlApi+data.otherList[0].icon});background-size: 100% 100%;background-position: center;padding-bottom: 0px;height: 100%;"></a>`;
                     $('#huatan').append(str2);
                     //祁连音乐
-                    let str3=`<a href="${item.linkAddress|| '#'}" class="gp-img-responsive" style="background-image: url(${baseUrlApi+data.otherList[1].icon});background-position: center;background-size: cover;padding-bottom: 0px;height: 100%;"></a>`;
+                    let str3=`<a target='_blank' href="${data.otherList[1].linkAddress || '#'}" class="gp-img-responsive" style="background-image: url(${baseUrlApi+data.otherList[1].icon});background-position: center;background-size: cover;padding-bottom: 0px;height: 100%;"></a>`;
                     $('#yinyue').append(str3);
                     //祁连阅读
-                    let str4=`<a href="${item.linkAddress|| '#'}" class="gp-img-responsive" style="background-image: url(${baseUrlApi+data.otherList[2].icon});background-position: center;background-size: cover;padding-bottom: 0px;height: 100%;"></a>`;
+                    let str4=`<a target='_blank' href="${data.otherList[2].linkAddress || '#'}" class="gp-img-responsive" style="background-image: url(${baseUrlApi+data.otherList[2].icon});background-position: center;background-size: cover;padding-bottom: 0px;height: 100%;"></a>`;
                     $('#yuedu').append(str4);
                 })
             }
@@ -543,10 +544,30 @@ $(function() {
         })
         $('#xinlizixun').append(str3);
     })
-
-    
-
-    
+    //网站设置
+    $.get(baseUrl+'/api/websiteConfig/detail',(res)=>{
+        let data=res.data;
+        let s=`
+            <span class="gp-f30" style='margin-bottom:20px'>${data.unitNumber}</span>
+            <span class="gp-f16">主办单位：${data.theOrganizer}</span>
+            <span class="gp-f16">联系电话：${data.contactPhoneNumber}</span>
+            <span class="gp-f16">联系人：&emsp;${data.contactPerson}</span>
+            <span class="gp-f16">备案号：&emsp;${data.recordNumber}</span>
+        `
+        $('.copyRight').append(s);
+    })
+    $.get(baseUrl+'/api/friendshipLink/webList?type=3',(res)=>{
+        const data=res.data;
+        let str=``;
+        data.forEach(item => {
+            let s=``;
+            item.child.forEach(val=>{
+                s+=`<a href="${val.linkAddress}" target='_blank' style="margin-right:20px">${val.name}</a>`
+            })
+            str+=`<div class="gp-f16" style="margin-bottom:10px;display:flex;"><span style="width:86px">${item.name}：</span><span style="width:calc(100% - 86px)">${s}</span></div>`
+        });
+        $(".addr").append(str);
+    })
 });
 
 function mode05_swiper(){

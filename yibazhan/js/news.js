@@ -80,4 +80,30 @@ $(function() {
         $(".pageTitle").append(`<span>${data.categoryName}</span>`)
         $(".gp-right").append(str);
     })
+    //网站设置
+    $.get(baseUrl+'/api/websiteConfig/detail',(res)=>{
+        let data=res.data;
+        let s=`
+            <span class="gp-f30" style='margin-bottom:20px'>${data.unitNumber}</span>
+            <span class="gp-f16">主办单位：${data.theOrganizer}</span>
+            <span class="gp-f16">联系电话：${data.contactPhoneNumber}</span>
+            <span class="gp-f16">联系人：&emsp;${data.contactPerson}</span>
+            <span class="gp-f16">备案号：&emsp;${data.recordNumber}</span>
+        `
+        $('.copyRight').append(s);
+    })
+    $.get(baseUrl+'/api/friendshipLink/webList?type=3',(res)=>{
+        const data=res.data;
+        let str=``;
+        data.forEach(item => {
+            let s=``;
+            item.child.forEach(val=>{
+                s+=`<a target='_blank' href="${val.linkAddress}" style="margin-right:20px">${val.name}</a>`
+            })
+            str+=`<div class="gp-f16" style="margin-bottom:10px;display:flex;"><span style="width:86px">${item.name}：</span><span style="width:calc(100% - 86px)">${s}</span></div>`
+        });
+        $(".addr").append(str);
+    })
+    
+    //网站设置
 });
