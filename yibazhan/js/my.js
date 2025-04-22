@@ -7,51 +7,14 @@ $(function() {
         let str1="";
         let str2="";
         data.forEach(item=>{
-            // let s1=``;
-            // let s2=``;
-            // item.child?.forEach(val=>{
-            //     s1+=`<li><a href="#">${val.name}</a></li>`;
-            //     s2+=`<dd><li><a href="#">${val.name}</a></li></dd>`;
-            // })
             str1+=`
                 <li>
                     <a href="#${item.name}">${item.name}</a><i class="toggle"></i>
                 </li>`
-            // if(s1===""){
-            //     str1+=`
-            //         <li>
-            //             <a href="#">${item.name}</a><i class="toggle"></i>
-            //         </li>`
-            // }else{
-            //     str1+=`
-            //         <li>
-            //             <a href="#">${item.name}</a><i class="toggle"></i>
-            //             <ul>
-            //                 ${s1}
-            //             </ul>
-            //         </li>`
-            // }
             str2+=`
                 <li>
                     <a href="#${item.name}" class="">${item.name}</a>
                 </li>`
-            
-            // if(s2===""){
-            //     str2+=`
-            //         <li>
-            //             <a href="#" class="">${item.name}</a>
-            //         </li>`
-            // }else{
-            //     str2+=`
-            //         <li>
-            //             <a href="#" class="">${item.name}</a>
-            //             <div class="subnav flex w3">
-            //                 <dl class="flex">
-            //                     ${s2}
-            //                 </dl>
-            //             </div>
-            //         </li>`
-            // }
             //新闻动态
             if(item.name==="新闻动态"){
                 let s=`
@@ -78,12 +41,12 @@ $(function() {
                     let data=res.data.records;
                     let str1=`
                         <div class="news_img1" >
-                            <a class="gp-img-responsive" href="./news.html?id=${data[0].id}" target='_blank'>
+                            <a class="gp-img-responsive" href="./news.html?type=article&id=${data[0].id}" target='_blank'>
                                 <img src="${baseUrlApi+data[0].pic}">
                             </a>
                         </div>
                         <div class="news_txt1 fontHei">
-                            <a href="./news.html?id=${data[0].id}" target='_blank'>
+                            <a href="./news.html?type=article&id=${data[0].id}" target='_blank'>
                                 <div class="date gp-f14 item-date1"><span class="gp-f20">${data[0].createTime.slice(8)}</span>${data[0].createTime.slice(0,7)}</div>
                                 <h3 class="news_title gp-f20 gp-ellipsis">${data[0].title}</h3>
                                 <div class="news_summary gp-f18 gp-ellipsis-2">${data[0].content}</div>
@@ -101,7 +64,7 @@ $(function() {
                             <li>
                                 <div class="item-info1">
                                     <div class="item-img1">
-                                        <a class="gp-img-responsive" href="./news.html?id=${val.id}" target='_blank'>
+                                        <a class="gp-img-responsive" href="./news.html?type=article&id=${val.id}" target='_blank'>
                                             <img src="${baseUrlApi+val.pic}">
                                         </a>
                                     </div>
@@ -118,7 +81,7 @@ $(function() {
                     data.slice(3,8).forEach(val=>{
                         str3+=`
                         <li>
-                            <a href="./news.html?id=${val.id}" target='_blank'>
+                            <a href="./news.html?type=article&id=${val.id}" target='_blank'>
                                 <div class="notice_date">
                                     <span class="day gp-f20">${val.createTime.slice(8)}</span>
                                     <span class="year gp-f14">${val.createTime.replace("-","/").slice(0,7)}</span>
@@ -158,7 +121,7 @@ $(function() {
                     data.forEach(item=>{
                         str+=`
                             <div class="til_tab">
-                                <a href="./news.html?id=${item.id}" target='_blank'>
+                                <a href="./news.html?type=article&id=${item.id}" target='_blank'>
                                     <div class="title gp-f20 gp-ellipsis">${item.title}</div>
                                     <div class="summary gp-f18 gp-ellipsis-2">${item.content}</div>
                                 </a>
@@ -198,7 +161,7 @@ $(function() {
                     data.forEach(item=>{
                         str+=`
                             <div class="til_tab">
-                                <a href="./news.html?id=${item.id}" target='_blank'>
+                                <a href="./news.html?type=article&id=${item.id}" target='_blank'>
                                     <div class="title gp-f20 gp-ellipsis">${item.title}</div>
                                     <div class="summary gp-f18 gp-ellipsis-2">${item.content}</div>
                                 </a>
@@ -253,37 +216,7 @@ $(function() {
             }
             //祁连驿站
             if(item.name==="祁连驿站"){
-                // $.get(baseUrl+'/api/sysCategory/getArticleTree?pid='+item.id,(res)=>{
-                //     console.log(11111111111,res)
-                //     const data=res.data;
-                //     data.forEach(item=>{
 
-                //     })
-                // })
-                //信箱
-                // $.get(baseUrl+'/api/sysCategory/getWebMailboxTree',(res)=>{
-                //     const data=res.data.slice(0,2);
-                //     let s=``;
-                //     data.forEach(item=>{
-                //         s+=`<div class="content_box" style="background: url(${baseUrlApi+item.backgroundImage}) no-repeat center;">${item.name}</div>`
-                //     })
-                //     $(".xinxiang").append(s);
-                // })
-                // //办事大厅
-                // $.get(baseUrl+'/api/friendshipLink/webList?type=2',(res)=>{
-                //     const data=res.data;
-                //     let str=``;
-                //     data.forEach((item,index)=>{
-                //         str+=`<a class="hall" href="${item.linkAddress}">
-                //             <image style="disaply:inline-block;width:24px;height:24px" src="${baseUrlApi+item.icon}" alt="">
-                //             <span>${item.name}</span></a>`
-                //     })
-                //     $(".dating").append(str);
-                // })
-                // //天天读报
-                // $.get(baseUrl+'/api/sysCategory/getArticleTree?pid=131',(res)=>{
-                //     console.log(11111111,res)
-                // })
             }
             if(item.name==="祁连艺苑"){
                 let s=`
@@ -339,7 +272,6 @@ $(function() {
                     $('#yuedu').append(str4);
                 })
             }
-
         })
         $('#nav').append(str1);
         $('#nav2').append(str2);
@@ -352,7 +284,7 @@ $(function() {
         HeaderFix()
     })
 
-    var swiper = new Swiper('#lunbo', {
+    new Swiper('#lunbo', {
         loop: true, // 循环模式
         pagination: {
           el: '.swiper-pagination', // 分页器
@@ -392,7 +324,6 @@ $(function() {
     })
     //天天读报
     $.get(baseUrl+'/api/sysCategory/getArticleTree?pid=131',(res)=>{
-        console.log(11111111,res)
         const data=res.data;
         let s=``;
         data.forEach(item=>{
@@ -402,108 +333,51 @@ $(function() {
         })
         $(".dubao").append(s);
     })
-    
-    //网站设置
-    $.get(baseUrl+'/api/websiteConfig/detail',(res)=>{
-
-    })
-
-    // //新闻动态
-    // $.get(baseUrl+'/api/article/FocusAndCurrentPolitics?currentPoliticsLimit=8',(res)=>{
-    //     let {data}=res;
-    //     const focus = data.focusPages.records;
-    //     const current=data.currentPoliticsPages.records;
-        
-    // })
-
-    // //强军资讯
-    // $.get(baseUrl+'/api/article/StrongMilitaryInformation?limit=7',(res)=>{
-    //     const {data} =res;
-    //     const newsPages = data.newsPages.records.slice(0,5);
-    //     const studyPages = data.studyPages.records.slice(0,5);
-    //     let str=``;
-    //     newsPages.forEach(item=>{
-    //         str+=`
-    //             <div class="til_tab">
-    //                 <a href="#">
-    //                     <div class="title gp-f20 gp-ellipsis">${item.title}</div>
-    //                     <div class="summary gp-f18 gp-ellipsis-2">${item.content}</div>
-    //                 </a>
-    //             </div>`;
-    //     })
-    //     let str1=``;
-    //     studyPages.forEach(item=>{
-    //         str1+= `
-    //             <div class="til_tab">
-    //                 <a href="https://www.nudt.edu.cn/kxyj/kydt/7d6d7ae8351246d89d0c4698f636cb83.htm">
-    //                     <div class="title gp-f20 gp-ellipsis">国防科大在高精度卫星导航领域取得重要进展</div>
-    //                     <div class="summary gp-f18 gp-ellipsis-2">近日，国防科技大学电子科学学院北斗团队利用天线抖动增加了卫星高精度测量中的信息量，实现一种消除多径误差的新机制。通过理论分析和器件结构设计，首次实现了的微小抖动消除多径误差，为复杂遮挡环境下的低成本高精度卫星导航提供了可能。研究成果以“一种基于天线抖动的多径误差消除方法”（A multipath error cancellation method based on antenna jitter）为题于2025年2月7日在线发表于国际著名学术期刊Nature的首个工程领域子刊《通讯•工程》(Communications Engineering)上（DOI: 10.1038/s44172-025-00355-z）。</div>
-    //                 </a>
-    //             </div>`;
-    //     })
-    //     $('.mode02 .til_list').append(str);
-    //     $('.mode03 .til_list').append(str1);
-    //     $(".mode02.tab").tab({
-    //         ev: 'mouseover',
-    //         more: false,
-    //         auto: false
-    //     });
-    //     $(".mode03.tab").tab({
-    //         ev: 'mouseover',
-    //         more: false,
-    //         auto: false
-    //     });
-    // })
-
     //律师在线
     $.get(baseUrl+'/api/person/webPage?page=1&size=2&type=37',(res)=>{
         const { data } = res;
         let str=``;
         data.records.forEach(item=>{
             str+=`
-                <div class="user-info">
+                <a href="./news.html?type=person&id=${item.id}" class="user-info">
                     <img src='${baseUrlApi+item.profilePicture}' alt="值班咨询师" class="avatar">
                     <div class="details">
                         <p class="name">${item.name}</p>
                     </div>
-                </div>`
+                </a>`
         })
         $('#lvshi').append(str);
     })
-    
-    
     //心理咨询
     $.get(baseUrl+'/api/person/webPage?page=1&size=2&type=38',(res)=>{
         const { data } = res;
         let str=``;
         data.records.forEach(item=>{
             str+=`
-                <div class="user-info">
+                <a href="./news.html?type=person&id=${item.id}" class="user-info" target='_blank'>
                     <img src='${baseUrlApi+item.profilePicture}' alt="值班咨询师" class="avatar">
                     <div class="details">
                         <p class="name">${item.name}</p>
                     </div>
-                </div>`
+                </a>`
         })
         $('#xinli').append(str);
     })
-
     //健康问诊
     $.get(baseUrl+'/api/person/webPage?page=1&size=2&type=36',(res)=>{
         const { data } = res;
         let str=``;
         data.records.forEach(item=>{
             str+=`
-                <div class="user-info">
+                <a href="./news.html?type=person&id=${item.id}" class="user-info">
                     <img src='${baseUrlApi+item.profilePicture}' alt="值班咨询师" class="avatar">
                     <div class="details">
                         <p class="name">${item.name}</p>
                     </div>
-                </div>`
+                </a>`
         })
         $('#jiankang').append(str);
     })
-
     //分类
     $.get(baseUrl+'/api/article/StrongMilitaryInformation?limit=7',(res)=>{
         const { data } = res;

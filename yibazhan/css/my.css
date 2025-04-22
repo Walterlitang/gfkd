@@ -213,6 +213,9 @@ body{
     position:absolute;
     right: 4px;
 }
+.NUDT_list2 li{
+    padding: 20px;
+}
 /* .straigh .content .first{
     display: flex;
 } */

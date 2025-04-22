@@ -1,85 +1,52 @@
 $(function() {
     const baseUrl="http://47.116.185.113:8085";
     const baseUrlApi="http://47.116.185.113:8085/api";
-    //标题
-    // $.get(baseUrl+'/api/sysCategory/getNavigationTree',(res)=>{
-    //     let {data}=res;
-    //     let str1="";
-    //     let str2="";
-    //     data.forEach(item=>{
-    //         let s1=``;
-    //         let s2=``;
-    //         item.child?.forEach(val=>{
-    //             s1+=`<li><a href="#">${val.name}</a></li>`;
-    //             s2+=`<dd><li><a href="#">${val.name}</a></li></dd>`;
-    //         })
-    //         if(s1===""){
-    //             str1+=`
-    //                 <li>
-    //                     <a href="#">${item.name}</a><i class="toggle"></i>
-    //                 </li>`
-    //         }else{
-    //             str1+=`
-    //                 <li>
-    //                     <a href="#">${item.name}</a><i class="toggle"></i>
-    //                     <ul>
-    //                         ${s1}
-    //                     </ul>
-    //                 </li>`
-    //         }
-            
-    //         if(s2===""){
-    //             str2+=`
-    //                 <li>
-    //                     <a href="#" class="">${item.name}</a>
-    //                 </li>`
-    //         }else{
-    //             str2+=`
-    //                 <li>
-    //                     <a href="#" class="">${item.name}</a>
-    //                     <div class="subnav flex w3">
-    //                         <dl class="flex">
-    //                             ${s2}
-    //                         </dl>
-    //                     </div>
-    //                 </li>`
-    //         }
-    //     })
-    //     $('#nav').append(str1);
-    //     $('#nav2').append(str2);
-    //     resizefs()
-    //     Nav('#nav') //导航
-    //     Nav2('#nav2')
-    //     mobileMenu('#gp-menu'); //移动端导航
-    //     SerMax('#searchBtn5', '#gp-search5');
-    //     wechat()
-    //     HeaderFix()
-    // });
-
-    const id = window.location.search.substring(4);
-    $.get(baseUrl+'/api/article/info?id='+id,(res)=>{
-        const {data}=res;
-        let str=`
-            <div class="curTitle gp-f30">
-                <a href="javascript:;">${data.categoryName}</a>
-            </div>
-            <div class="pageCon">
-                <div class="gp-title gp-f30">${data.title}</div>
-                <div class="gp-info">
-                    <span class="gp-f16">发布时间：${data.releaseTime}</span>
-                    <span class="gp-f16">文章出处：${data.articleSource}</span>						
-                    <span class="gp-f16">文章作者：${data.author|| '--'}</span>
-                    <span class="gp-f16">审核人：${data.reviewer || '--'}</span>
-                    <span class="gp-f16">新闻分类：${data.categoryName}</span>
-                    <span class="gp-f16">阅读量：${data.viewCount}</span>
+    const str = window.location.search.substring(1);
+    const type=str.split("&")[0].split("=")[1];
+    const id=str.split("&")[1].split("=")[1];
+    if(type==="article"){
+        $.get(baseUrl+'/api/article/info?id='+id,(res)=>{
+            const {data}=res;
+            let str=`
+                <div class="curTitle gp-f30">
+                    <a href="javascript:;">${data.categoryName}</a>
                 </div>
-                <div class="gp-content gp-f16" style="text-indent: 2em;">
-                    ${data.content}
+                <div class="pageCon">
+                    <div class="gp-title gp-f30">${data.title}</div>
+                    <div class="gp-info">
+                        <span class="gp-f16">发布时间：${data.releaseTime}</span>
+                        <span class="gp-f16">文章出处：${data.articleSource}</span>						
+                        <span class="gp-f16">文章作者：${data.author|| '--'}</span>
+                        <span class="gp-f16">审核人：${data.reviewer || '--'}</span>
+                        <span class="gp-f16">新闻分类：${data.categoryName}</span>
+                        <span class="gp-f16">阅读量：${data.viewCount}</span>
+                    </div>
+                    <div class="gp-content gp-f16" style="text-indent: 2em;">
+                        ${data.content}
+                    </div>
+                </div>`;
+            $(".pageTitle").append(`<span>${data.categoryName}</span>`)
+            $(".gp-right").append(str);
+        })
+    }else if(type==="person"){
+        $.get(baseUrl+'/api/person/info?id='+id,(res)=>{
+            const {data}=res;
+            let str=`
+                <div class="curTitle gp-f30">
+                    <a href="javascript:;">${data.introduction}</a>
                 </div>
-            </div>`;
-        $(".pageTitle").append(`<span>${data.categoryName}</span>`)
-        $(".gp-right").append(str);
-    })
+                <div class="gp-content gp-f16">
+                    <p style="text-indent: 2em;"></p>
+                    <p style="text-align: center"><img src="${baseUrlApi+data.profilePicture}" alt="" width="300" height="420" border="0" vspace="0" title="" style="width: 300px; height: 420px;"></p> 
+                    <p style="text-align: center; text-indent: 0em;"><span style="text-indent: 0em;">${data.name}</span></p> 
+                    <p style="text-indent: 2em;">${data.details}</p> 
+                    <div class="Annex gp-f20"></div>
+                </div>`;
+            $(".pageTitle").append(`<span>${data.introduction}</span>`)
+            $(".gp-right").append(str);
+        })
+    }
+    
     //网站设置
     $.get(baseUrl+'/api/websiteConfig/detail',(res)=>{
         let data=res.data;
