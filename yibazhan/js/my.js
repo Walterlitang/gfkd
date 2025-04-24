@@ -16,6 +16,7 @@ $(function() {
                     <a href="#${item.name}" class="">${item.name}</a>
                 </li>`
             //新闻动态
+            
             if(item.id===141){
                 let s=`
                     <div class="mode1 gp-flex gp-container  gp-clearFix" id="${item.name}">
