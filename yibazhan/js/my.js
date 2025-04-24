@@ -16,12 +16,12 @@ $(function() {
                     <a href="#${item.name}" class="">${item.name}</a>
                 </li>`
             //新闻动态
-            if(item.name==="新闻动态"){
+            if(item.id===141){
                 let s=`
                     <div class="mode1 gp-flex gp-container  gp-clearFix" id="${item.name}">
                         <div class="col lf effect effect4">
                             <div class="listTitle1">
-                                <h2 class="gp-f30"><a href="#">新闻动态<span class="enTitle gp-f16"><b class="gp-f30">N</b>ews</span></a></h2>
+                                <h2 class="gp-f30"><a href="#">${item.name}<span class="enTitle gp-f16"><b class="gp-f30">N</b>ews</span></a></h2>
                             </div>
                             <div class="news_info1 gp-flex"></div>
                             <ul class="NUDT-list1 gp-avg-2"></ul>
@@ -98,10 +98,10 @@ $(function() {
                 })
             }
             //强军资讯
-            if(item.name==="强军资讯"){
+            if(item.id===2){
                 let s=`
                     <div class="mode02_title fs40 effect effect3" id="${item.name}">
-                        <h2 class="gp-f30"><a href="#">强军资讯<span class="enTitle gp-f16"><b class="gp-f30">I</b>nformation</span></a></h2>
+                        <h2 class="gp-f30"><a href="#">${item.name}<span class="enTitle gp-f16"><b class="gp-f30">I</b>nformation</span></a></h2>
                     </div>
                     <div class="mode02 tab">
                         <img src="yibazhan/images/mode02_gradient.png" alt="" class="cover">
@@ -138,10 +138,10 @@ $(function() {
                 })
             }
             //祁连讲习所
-            if(item.name==="祁连讲习所"){
+            if(item.id===15){
                 let s=`
                     <div class="mode03_title fs40 effect effect1" id="${item.name}">
-                        <h2 class="gp-f30"><a href="#">祁连讲习所<span class="enTitle gp-f16"><b class="gp-f30">L</b>ecture</span></a></h2>
+                        <h2 class="gp-f30"><a href="#">${item.name}<span class="enTitle gp-f16"><b class="gp-f30">L</b>ecture</span></a></h2>
                     </div>
                     <div class="mode03 tab">
                         <img src="yibazhan/images/mode03_gradient.png" alt="" class="cover">
@@ -178,11 +178,11 @@ $(function() {
                 })
             }
             //人物风采
-            if(item.name==="人物风采"){
+            if(item.id===130){
                 let s=`
                     <div class="mode05 effect effect1" id="${item.name}">
                         <div class="index_title5 mode04_title">
-                            <h2 class="gp-f30"><a href="#">人物风采<span class="enTitle gp-f16"><b class="gp-f30">N</b>UDT PEOPLE</span></a></h2>
+                            <h2 class="gp-f30"><a href="#">${item.name}<span class="enTitle gp-f16"><b class="gp-f30">N</b>UDT PEOPLE</span></a></h2>
                         </div>
                         <div class="mode05_slides ul-inline">
                             <div class="item-bg"></div>
@@ -218,14 +218,14 @@ $(function() {
             if(item.name==="祁连驿站"){
 
             }
-            if(item.name==="祁连艺苑"){
+            if(item.id===19){
                 let s=`
                     <div class="mode06" style="height:100vh" id="${item.name}">
                         <div class="mode06Con gp-container flex" style="height:100%">
                             <div class="flex left" style="width: 100%;">
                                 <div class="lf col" style="position:relative;"> 
                                     <div class="index_title6 mode05_title effect isView" style="position: absolute;top: 24px;width: 400px;height:100px;z-index:99999;">
-                                        <h2 class="gp-f40"><a href="#">祁连艺苑<span class="enTitle gp-f20"><b class="gp-f40">A</b>RTS</span></a></h2>
+                                        <h2 class="gp-f40"><a href="#">${item.name}<span class="enTitle gp-f20"><b class="gp-f40">A</b>RTS</span></a></h2>
                                     </div>
                                     <ul style="height: 100%;">
                                         <li style="height: 100%;">
