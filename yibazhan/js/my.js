@@ -1,12 +1,14 @@
 $(function() {
     const baseUrl="http://47.116.185.113:8085";
     const baseUrlApi="http://47.116.185.113:8085/api";
+    // const baseUrl="http://182.92.129.110:8085";
+    // const baseUrlApi="http://182.92.129.110:8085/api";
     //标题
     $.get(baseUrl+'/api/sysCategory/getNavigationTree',(res)=>{
         let {data}=res;
         let str1="";
         let str2="";
-        data.forEach(item=>{
+        data.filter(val=>val.status).forEach(item=>{
             str1+=`
                 <li>
                     <a href="#${item.name}">${item.name}</a><i class="toggle"></i>
@@ -198,7 +200,7 @@ $(function() {
                 $.get(baseUrl+'/api/article/page?page=1&size=50&cid='+item.id,(res)=>{
                     const { data } = res;
                     let str=``;
-                    data.records.slice(5).forEach(item=>{
+                    data.records.slice(0,5).forEach(item=>{
                         str+=`<li class="swiper-slide">
                             <a href="#" class="news_item">
                                 <div class="infoBox">
