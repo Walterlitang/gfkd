@@ -216,6 +216,16 @@ body{
 .NUDT_list2 li{
     padding: 20px;
 }
+.col-title{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 2px 10px 4px 20px;
+    border-radius:0px 0px 0px 12px;
+    background-color: rgb(0, 134, 69);
+    color: white;
+    z-index: 999;
+}
 /* .straigh .content .first{
     display: flex;
 } */

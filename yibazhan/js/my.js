@@ -236,8 +236,8 @@ $(function() {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="md col">
-                                    
+                                <div class="md col" style="position:relative">
+                                    <div class="col-title">祁连光影</div>
                                     <ul style="height: 100%;">
                                         <li style="height: 100%;">
                                             <div class="item c2" style="cursour:pointer;height: 100%;" id="huatan"></div>
@@ -246,10 +246,12 @@ $(function() {
                                 </div>
                                 <div class="md col">
                                     <ul style="height: 100%;display: flex;flex-direction: column;justify-content: space-between;">
-                                        <li style="height:calc(50% - 10px);">
+                                        <li style="height:calc(50% - 10px);position:relative;">
+                                            <div class="col-title" style="right:0px">祁连音乐</div>
                                             <div class="item c2" style="height: 100%;" id="yinyue"></div>
                                         </li>
-                                        <li style="height:calc(50% - 10px);">
+                                        <li style="height:calc(50% - 10px);position:relative;">
+                                            <div class="col-title" style="right:0px">祁连阅读</div>
                                             <div class="item c3" style="height: 100%;" id="yuedu"></div>
                                         </li>
                                     </ul>
